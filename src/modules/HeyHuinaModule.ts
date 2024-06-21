@@ -8,7 +8,7 @@ import { Module } from 'lib/types';
  *
  * If user admits that they are "хуйня", the bot will agree.
  */
-export const HeyHuina: Module = (bot, { chatId }) => {
+export const HeyHuinaModule: Module = ({ chatId, bot }) => {
   let lastInsultId: number | null = null
 
   bot.onText(/^эй хуйня/ig, (msg) => {

@@ -7,7 +7,7 @@ import { responses } from './responses'
  * This module checks whether Polina Gagarina recorded a
  * too long voice message to let her know about this.
  */
-export const PolinaVoiceMessage: Module = (bot, { chatId }) => {
+export const PolinaVoiceMessageModule: Module = ({ bot, chatId }) => {
   bot.on('message', message => {
     if (!message.from || !message.voice) return
 

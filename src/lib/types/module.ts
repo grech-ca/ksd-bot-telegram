@@ -1,4 +1,3 @@
-import TelegramBot from 'node-telegram-bot-api'
 import { Context } from './context'
 
 /**
@@ -8,4 +7,4 @@ import { Context } from './context'
  * @param bot A bot instance 
  * @param context A common data that is used across the app
  */
-export type Module = (bot: TelegramBot, context: Context) => void
+export type Module = (context: Context) => void
