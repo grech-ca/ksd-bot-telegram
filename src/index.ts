@@ -3,6 +3,7 @@ import { CHAT_IDS } from 'lib/constants'
 import { addModules } from 'lib/helpers'
 import { PolinaVoiceMessageModule, HeyHuinaModule, LoggerModule, CommandModule } from 'modules'
 import { WhoCommand } from 'modules/CommandModule/commands'
+import { UrgentComand } from 'modules/CommandModule/commands/UrgentCommand'
 
 const { API_TOKEN } = process.env
 
@@ -18,6 +19,7 @@ async function main() {
     CommandModule({
       commands: [
         WhoCommand,
+        UrgentComand,
       ]
     }),
   ], { bot, chatId })
