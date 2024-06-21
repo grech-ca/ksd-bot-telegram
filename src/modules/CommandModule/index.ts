@@ -13,26 +13,25 @@ export const CommandModule = ({ commands: commandsList }: CommandModuleParams): 
   const { bot, chatId } = ctx
 
   const commands: Commands = {
-    ...Object.fromEntries(commandsList.map(command => [command.name, command])),
     help: HelpCommand,
+    ...Object.fromEntries(commandsList.map(command => [command.name, command])),
   }
 
   bot.onText(/^\/.*/, async (message) => {
     const { text } = message
     if (!text) return
 
-    const [commandName, ...params] = text.slice(1).split(' ')
+    const [commandName, ...args] = text.slice(1).split(' ')
 
     const command = commands[commandName]
 
     const commandContext: CommandContext = { ...ctx, message, commands }
 
     if (command) {
-      command.callback(commandContext, ...params)
+      command.callback(commandContext, ...args)
     } else {
       await bot.sendMessage(chatId, 'Такой команды нет')
-      commands.help.callback(commandContext, ...params)
+      commands.help.callback(commandContext, ...args)
     }
-
   })
 }

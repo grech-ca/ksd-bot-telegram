@@ -2,6 +2,7 @@ import TelegramBot from 'node-telegram-bot-api'
 import { CHAT_IDS } from 'lib/constants'
 import { addModules } from 'lib/helpers'
 import { PolinaVoiceMessageModule, HeyHuinaModule, LoggerModule, CommandModule } from 'modules'
+import { WhoCommand } from 'modules/CommandModule/commands'
 
 const { API_TOKEN } = process.env
 
@@ -15,7 +16,9 @@ async function main() {
     HeyHuinaModule,
     PolinaVoiceMessageModule,
     CommandModule({
-      commands: []
+      commands: [
+        WhoCommand,
+      ]
     }),
   ], { bot, chatId })
 }

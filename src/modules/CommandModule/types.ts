@@ -9,7 +9,7 @@ export type CommandContext = Context & {
 export type Command = {
   name: string
   description: string
-  callback: (context: CommandContext, ...params: string[]) => void | Promise<void>
+  callback: (context: CommandContext, ...args: string[]) => void | Promise<void>
 }
 
 export type Commands = {
