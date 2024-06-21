@@ -1,0 +1,21 @@
+{
+  "name": "ksd-bot-telegram",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun ./src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node-telegram-bot-api": "^0.64.7",
+    "bun-types": "latest",
+    "prisma": "^5.15.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.15.1",
+    "dayjs": "^1.11.11",
+    "node-telegram-bot-api": "^0.66.0"
+  }
+}
