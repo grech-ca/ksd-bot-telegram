@@ -1,28 +1,24 @@
 import TelegramBot from 'node-telegram-bot-api'
 import { CHAT_IDS } from 'lib/constants'
 import { addModules } from 'lib/helpers'
-import { PolinaVoiceMessageModule, HeyHuinaModule, LoggerModule, CommandModule } from 'modules'
-import { WhoCommand } from 'modules/CommandModule/commands'
-import { UrgentComand } from 'modules/CommandModule/commands/UrgentCommand'
+import { PolinaVoiceMessageModule, HeyHuinaModule, LoggerModule, CommandModule, WakeUpModule } from 'modules'
+import { WhoCommand, UrgentComand } from 'modules/CommandModule/commands'
 
 const { API_TOKEN } = process.env
 
-async function main() {
-  const bot = new TelegramBot(API_TOKEN, { polling: true })
+const bot = new TelegramBot(API_TOKEN, { polling: true })
 
-  const chatId = CHAT_IDS.ksd
+const chatId = CHAT_IDS.ksd
 
-  addModules([
-    LoggerModule,
-    HeyHuinaModule,
-    PolinaVoiceMessageModule,
-    CommandModule({
-      commands: [
-        WhoCommand,
-        UrgentComand,
-      ]
-    }),
-  ], { bot, chatId })
-}
-
-main()
+addModules([
+  // WakeUpModule,
+  LoggerModule,
+  HeyHuinaModule,
+  PolinaVoiceMessageModule,
+  CommandModule({
+    commands: [
+      WhoCommand,
+      // UrgentComand,
+    ]
+  }),
+], { bot, chatId })
