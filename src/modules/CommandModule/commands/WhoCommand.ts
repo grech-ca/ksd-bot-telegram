@@ -3,7 +3,7 @@ import { random } from "lib/helpers";
 import { Command } from "modules/CommandModule/types";
 
 export const WhoCommand: Command = {
-  name: 'кто',
+  triggers: ['кто', 'who'],
   description: 'Выбирает одного из пользователей',
   callback: async ({ chatId, bot }, ...args) => {
     const userIds = Object.values(USER_IDS)

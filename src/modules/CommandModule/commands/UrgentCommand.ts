@@ -2,7 +2,7 @@ import { delay } from "lib/helpers";
 import { Command } from "modules/CommandModule/types";
 
 export const UrgentComand: Command = {
-  name: 'срочно',
+  triggers: ['срочно', 'ало', 'быстро', 'urgent'],
   description: 'Начинает спамить упоминаниями определенного пользователя',
   callback: async ({ message, chatId, bot }) => {
     const mentions = message.entities?.filter(({ type }) => type === 'mention') ?? []

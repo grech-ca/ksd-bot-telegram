@@ -7,7 +7,7 @@ export type CommandContext = Context & {
 }
 
 export type Command = {
-  name: string
+  triggers: string[]
   description: string
   callback: (context: CommandContext, ...args: string[]) => void | Promise<void>
 }
