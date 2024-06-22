@@ -2,7 +2,7 @@ import TelegramBot from 'node-telegram-bot-api'
 import { CHAT_IDS } from 'lib/constants'
 import { addModules } from 'lib/helpers'
 import { PolinaVoiceMessageModule, HeyHuinaModule, LoggerModule, CommandModule, WakeUpModule } from 'modules'
-import { WhoCommand, UrgentComand } from 'modules/CommandModule/commands'
+import { WhoCommand, UrgentCommand } from 'modules/CommandModule/commands'
 
 const { API_TOKEN } = process.env
 
@@ -18,7 +18,7 @@ addModules([
   CommandModule({
     commands: [
       WhoCommand,
-      // UrgentComand,
+      UrgentCommand,
     ]
   }),
 ], { bot, chatId })

@@ -7,6 +7,7 @@ export type CommandContext = Context & {
 }
 
 export type Command = {
+  isEnabled: boolean
   triggers: string[]
   description: string
   callback: (context: CommandContext, ...args: string[]) => void | Promise<void>

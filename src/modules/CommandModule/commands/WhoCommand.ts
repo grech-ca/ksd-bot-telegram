@@ -3,6 +3,7 @@ import { random } from "lib/helpers";
 import { Command } from "modules/CommandModule/types";
 
 export const WhoCommand: Command = {
+  isEnabled: true,
   triggers: ['кто', 'who'],
   description: 'Выбирает одного из пользователей',
   callback: async ({ chatId, bot }, ...args) => {

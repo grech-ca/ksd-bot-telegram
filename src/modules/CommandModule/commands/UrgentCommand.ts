@@ -1,7 +1,9 @@
 import { delay } from "lib/helpers";
 import { Command } from "modules/CommandModule/types";
 
-export const UrgentComand: Command = {
+export const UrgentCommand: Command = {
+  isEnabled: false,
+
   triggers: ['срочно', 'ало', 'быстро', 'urgent'],
   description: 'Начинает спамить упоминаниями определенного пользователя',
   callback: async ({ message, chatId, bot }) => {

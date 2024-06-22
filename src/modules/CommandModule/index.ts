@@ -18,7 +18,7 @@ export const CommandModule = ({ commands: commandsList }: CommandModuleParams): 
   const allCommands = [
     ...coreCommands,
     ...commandsList,
-  ]
+  ].sort(({ isEnabled }) => isEnabled ? 0 : 1)
 
   const commands: Commands = {
     help: HelpCommand,
