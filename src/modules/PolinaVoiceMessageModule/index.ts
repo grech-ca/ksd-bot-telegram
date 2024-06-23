@@ -1,6 +1,6 @@
 import { is, random } from "lib/helpers";
 import { Module } from "lib/types";
-import { responses } from './responses'
+import { responses } from './messages'
 
 /**
  * 
