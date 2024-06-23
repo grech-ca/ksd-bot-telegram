@@ -1,10 +1,14 @@
 import { Module } from "lib/types";
 import { Command, CommandContext, Commands } from "./types";
 import { HelpCommand } from "./commands";
+import { chance, isIrrelevant, random } from "lib/helpers";
+import { messages } from "./messages";
 
 export type CommandModuleParams = {
   commands: Command[]
 }
+
+const DISABLED_RESPONSE_CHANCE = 10
 
 /**
  *
@@ -30,8 +34,8 @@ export const CommandModule = ({ commands: commandsList }: CommandModuleParams): 
   }
 
   bot.onText(/^\/.*/, async (message) => {
-    const { text } = message
-    if (!text) return
+    const { text, date } = message
+    if (!text || isIrrelevant(date)) return
 
     const [commandName, ...args] = text.slice(1).split(' ')
 
@@ -40,7 +44,13 @@ export const CommandModule = ({ commands: commandsList }: CommandModuleParams): 
     const commandContext: CommandContext = { ...ctx, message, commands }
 
     if (command) {
-      command.callback(commandContext, ...args)
+      if (command.isEnabled) {
+        command.callback(commandContext, ...args)
+      } else {
+        await bot.sendMessage(chatId, `❌ Команда "/${commandName}" временно не доступна.`)
+
+        if (chance(DISABLED_RESPONSE_CHANCE)) await bot.sendMessage(chatId, random(messages.disabled))
+      }
     } else {
       await bot.sendMessage(chatId, 'Такой команды нет')
       commands.help.callback(commandContext, ...args)

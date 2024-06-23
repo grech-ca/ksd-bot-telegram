@@ -1,4 +1,4 @@
-import { chance, random } from "lib/helpers";
+import { chance, isIrrelevant, random } from "lib/helpers";
 import { Module } from "lib/types";
 import { messages } from "./messages";
 
@@ -10,7 +10,9 @@ const PHOTO_RESPONSE_CHANCE = 100
  * with a chance of PHOTO_RESPONSE_CHANCE
  */
 export const PhotoReplyModule: Module = ({ bot, chatId }) => {
-  bot.on('message', (_message, { type }) => {
+  bot.on('message', ({ date }, { type }) => {
+    if (isIrrelevant(date)) return
+
     if (type === 'photo' && chance(PHOTO_RESPONSE_CHANCE)) {
       bot.sendMessage(chatId, random(messages))
     }

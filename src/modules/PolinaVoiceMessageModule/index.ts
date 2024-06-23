@@ -1,4 +1,4 @@
-import { is, random } from "lib/helpers";
+import { is, isIrrelevant, random } from "lib/helpers";
 import { Module } from "lib/types";
 import { responses } from './messages'
 
@@ -10,6 +10,7 @@ import { responses } from './messages'
 export const PolinaVoiceMessageModule: Module = ({ bot, chatId }) => {
   bot.on('message', message => {
     if (!message.from || !message.voice) return
+    if (isIrrelevant(message.date)) return
 
     if (is(message.from, 'polina') && message.voice.duration > 120) {
       bot.sendMessage(chatId, random(responses)!, {
